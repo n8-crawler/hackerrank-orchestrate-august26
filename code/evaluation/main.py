@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from code.services.dataloader import DataLoader
+from services.dataloader import DataLoader
 from pipeline.stateclass import NotificationState
 from pipeline.pipeline import graph_compile
 import pandas as pd
