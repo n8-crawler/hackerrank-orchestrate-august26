@@ -24,6 +24,6 @@ df = pd.DataFrame(rows)
 
 print(df.head())
 
-file_path = Path(__file__).parent.parent/"dataset"/"output.csv"
+file_path = Path(__file__).parent.parent.parent/"dataset"/"output.csv"
 
 df.to_csv(str(file_path), index=False)
