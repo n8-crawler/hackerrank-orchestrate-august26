@@ -5,25 +5,29 @@ from pipeline.stateclass import NotificationState
 from pipeline.pipeline import graph_compile
 import pandas as pd
 
-results = []
+def run_agents():
+    results = []
 
-for message in DataLoader().messages:
+    for message in DataLoader().messages:
 
-    state = NotificationState(
+        state = NotificationState(
 
-        message_id=message.message_id
+            message_id=message.message_id
 
-    )
+        )
 
-    result = graph_compile.invoke(state)
+        result = graph_compile.invoke(state)
 
-    results.append(result["decision"])
+        results.append(result["decision"])
 
-rows = [decision.model_dump() for decision in results]
-df = pd.DataFrame(rows)
+    rows = [decision.model_dump() for decision in results]
+    df = pd.DataFrame(rows)
 
-print(df.head())
+    print(df.head())
 
-file_path = Path(__file__).parent.parent.parent/"dataset"/"output.csv"
+    file_path = Path(__file__).parent.parent.parent/"dataset"/"output.csv"
 
-df.to_csv(str(file_path), index=False)
+    df.to_csv(str(file_path), index=False)
+
+if __name__ == "__main__":
+    run_agents()
