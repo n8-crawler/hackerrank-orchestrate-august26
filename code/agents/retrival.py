@@ -14,9 +14,9 @@ from schemas.voice_notes import VoiceFile
 from schemas.daily_notification import DailyNotification
 
 class Retriver:
-    def __init__(self,llmservice:LLMservice,dataloader:DataLoader):
-        self.llm = llmservice
-        self.data = dataloader
+    def __init__(self):
+        self.llm = LLMservice()
+        self.data = DataLoader()
 
     def get_message(self,message_id:str)->IncomingMessage|None:
         for message in self.data.messages:

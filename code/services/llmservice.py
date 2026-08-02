@@ -11,7 +11,7 @@ class LLMservice:
 
     def load_reasoning_model(self):
         model_name = "mistralai/Ministral-3-8B-Reasoning-2512"
-        self.reason_device = torch.device("mps")
+        self.reason_device = torch.device("cpu")
         self.reasoning_tokenizer = MistralCommonBackend.from_pretrained(model_name)
         self.reasoning_model = Mistral3ForConditionalGeneration.from_pretrained(model_name, torch_dtype=torch.bfloat16).to(self.reason_device)
         

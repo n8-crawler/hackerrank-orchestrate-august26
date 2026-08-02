@@ -86,7 +86,6 @@ class DataLoader:
     ) -> list[T]:
 
         file_path = self.dataset_path/"dataset"/filename
-
         df = pd.read_csv(file_path)
 
         records = []

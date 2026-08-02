@@ -1,12 +1,13 @@
-from code.schemas.response import NotificationDecision
+from schemas.response import NotificationDecision
 from schemas.enums import MediaType
 from schemas.notifications import NotificationDesicion
 from services.llmservice import LLMservice
 from agents.retrival import Retriver
+
 class Router:
-    def __init__(self,retriver:Retriver,llm:LLMservice):
-        self.retriver = retriver
-        self.llm = llm
+    def __init__(self):
+        self.retriver = Retriver()
+        self.llm = LLMservice()
 
     def build_context(self,message_id:str)->dict:
         message = self.retriver.get_message(message_id=message_id)
@@ -55,7 +56,6 @@ class Router:
         sections.append(f"""
         ==============USER==============
         User Id : {user.user_id}
-        Message ID : {user.message_id}
         Quiet Hours : {user.do_not_disturb_window}
         Messages Opened in last 30 days: {user.messages_opened_30d}
         Messages replied in last 30 days: {user.messages_replied_30d}
@@ -94,15 +94,16 @@ class Router:
          """)
 
         if user_history:
-            sections.append(f"""
-            ===============User OLD MESSAGE HISTORY==============
-            User Id : {user_history.user_id}
-            Messages Id : {user_history.message_id}
-            Business ID : {user_history.business_id}
-            Conversation Type : {user_history.conversation_type}
-            Message Text : {message.message_text}
-            Media Type : {message.media_type}
-        """)
+            for message in user_history:
+                sections.append(f"""
+                ===============User OLD MESSAGE HISTORY==============
+                User Id : {message.user_id}
+                Messages Id : {message.message_id}
+                Business ID : {message.business_id}
+                Conversation Type : {message.conversation_type}
+                Message Text : {message.message_text}
+                Media Type : {message.media_type}
+            """)
 
         if message_events:
             sections.append(f"""

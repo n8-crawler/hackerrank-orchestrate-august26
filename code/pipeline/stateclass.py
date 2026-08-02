@@ -8,4 +8,4 @@ class NotificationState:
     voice_analysis: str | None=None
     context: dict | None=None
     response : str | None=None
-    decision : NotificationDesicion | None
+    decision : NotificationDesicion | None=None
