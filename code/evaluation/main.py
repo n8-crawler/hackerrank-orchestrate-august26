@@ -1,33 +1,25 @@
 from pathlib import Path
-
 from services.dataloader import DataLoader
 from pipeline.stateclass import NotificationState
 from pipeline.pipeline import graph_compile
 import pandas as pd
 
 def run_agents():
-    results = []
 
     for message in DataLoader().messages:
 
         state = NotificationState(
-
             message_id=message.message_id
-
         )
 
         result = graph_compile.invoke(state)
+        print("AI output>>>>>>>>>",result['decision'])
 
-        results.append(result["decision"])
+        file_path = Path(__file__).parent.parent.parent / "dataset" / "output.csv"
 
-    rows = [decision.model_dump() for decision in results]
-    df = pd.DataFrame(rows)
+        df = pd.DataFrame([state.decision.model_dump()])
 
-    print(df.head())
-
-    file_path = Path(__file__).parent.parent.parent/"dataset"/"output.csv"
-
-    df.to_csv(str(file_path), index=False)
+        df.to_csv(file_path,mode="a",index=False,header=not file_path.exists())
 
 if __name__ == "__main__":
     run_agents()

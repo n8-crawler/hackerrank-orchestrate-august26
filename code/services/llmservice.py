@@ -44,8 +44,17 @@ class LLMservice:
         generated_ids = outputs[:, prompt_length:]
 
         response = self.reasoning_tokenizer.decode(generated_ids[0],skip_special_tokens=True,)
-        print('>>>>>reason>>>>>>',response.strip())
-        return response.strip()
+        #clean json from response
+        ai_text = response.strip("```json").strip("```").strip()
+        if ai_text.startswith("```json"):
+                ai_text = ai_text[len("```json"):].strip()
+        if ai_text.startswith("```"):
+                ai_text = ai_text[3:].strip()
+        if ai_text.endswith("```"):
+                ai_text = ai_text[:-3].strip()
+
+        print('>>>>>reason>>>>>>',ai_text.strip())
+        return ai_text.strip()
         
     def analyse_image(self,image_path:str)->str:
         local_prompt = """
