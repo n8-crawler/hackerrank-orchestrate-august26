@@ -1,7 +1,7 @@
 message_id,action,message_type,reason,confidence,evidence_message_ids
-msg_023,,,,,
-msg_091,,,,,
-msg_090,,,,,
+msg_023,notify,payment,User has an active bank account relationship with HDFC Bank and has previously received payment-related messages. The message is time-sensitive and requires immediate attention.,0.95,"message_0011,message_0076,message_0075,message_0244,message_0091,message_0243,message_0101"
+msg_091,notify,personal,Workspace access expiration requires immediate action to prevent account deactivation,0.95,message_0238
+msg_090,notify,personal,"The message is a personal inquiry about a package mix-up and does not match the user's previous business or promotional interactions. It is not urgent, but it requires attention to resolve the package issue.",0.9,
 msg_048,,,,,
 msg_040,,,,,
 msg_075,,,,,
