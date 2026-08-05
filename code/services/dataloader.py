@@ -3,7 +3,7 @@ from typing import Type, TypeVar
 
 import pandas as pd
 from pydantic import BaseModel
-
+from schemas.output_messages import OutputIds
 from schemas.incoming_message import IncomingMessage
 from schemas.users import UserProfile
 from schemas.groups import Group
@@ -77,6 +77,10 @@ class DataLoader:
         self.daily_notification_summary = self.load_csv(
             "daily_notification_summary.csv",
             DailyNotification
+        )
+        self.new_messages = self.load_csv(
+            'output.csv',
+            OutputIds
         )
 
     def load_csv(
