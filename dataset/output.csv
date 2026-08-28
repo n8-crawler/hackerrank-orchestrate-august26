@@ -2,9 +2,9 @@ message_id,action,message_type,reason,confidence,evidence_message_ids
 msg_023,notify,payment,User has an active bank account relationship with HDFC Bank and has previously received payment-related messages. The message is time-sensitive and requires immediate attention.,0.95,"message_0011,message_0076,message_0075,message_0244,message_0091,message_0243,message_0101"
 msg_091,notify,personal,Workspace access expiration requires immediate action to prevent account deactivation,0.95,message_0238
 msg_090,notify,personal,"The message is a personal inquiry about a package mix-up and does not match the user's previous business or promotional interactions. It is not urgent, but it requires attention to resolve the package issue.",0.9,
-msg_048,,,,,
-msg_040,,,,,
-msg_075,,,,,
+msg_048,notify,payment,"Urgent penalty notice with deadline for access card clearance, requires immediate action to avoid service disruption.",0.95,"message_0151,message_0098,message_0067,message_0068,message_0237,message_0152,message_0030,message_0100"
+msg_040,mute,spam,"Message contains manipulative language ('luck changes when you share', 'Do not ignore') and is a forward with no added value, typical of spam or scam tactics.",0.95,"message_0136,message_0018,message_0017,message_0157,message_0034,message_0104,message_0158,message_0112,message_0084,message_0103,message_0188,message_0052"
+msg_075,notify,business_update,"Ride booking status update with potential route changes, relevant to user's recent ride booking activity and business relationship.",0.95,"message_0205,message_0206"
 msg_005,,,,,
 msg_104,,,,,
 msg_069,,,,,

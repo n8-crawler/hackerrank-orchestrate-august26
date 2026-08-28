@@ -9,7 +9,7 @@ def run_agents():
     processed_messages = []
 
     for message in DataLoader().new_messages:
-        if message.message_id in processed_messages:
+        if message.message_id in processed_messages or message.notification is not None:
             continue
         else:
             processed_messages.append(message.message_id)
